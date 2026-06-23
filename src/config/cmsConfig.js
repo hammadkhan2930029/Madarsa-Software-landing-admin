@@ -1,0 +1,131 @@
+const configs = {
+  settings: {
+    table: 'site_settings',
+    orderBy: 'id ASC',
+    fields: [
+      { api: 'siteTitle', column: 'site_title' },
+      { api: 'metaDescription', column: 'meta_description' },
+      { api: 'favicon', column: 'favicon' },
+      { api: 'logoLight', column: 'logo_light' },
+      { api: 'logoDark', column: 'logo_dark' },
+    ],
+  },
+  hero: {
+    table: 'hero_section',
+    orderBy: 'id ASC',
+    fields: [
+      { api: 'kicker', column: 'kicker' },
+      { api: 'title', column: 'title' },
+      { api: 'description', column: 'description' },
+      { api: 'primaryCta', column: 'primary_cta' },
+      { api: 'primaryHref', column: 'primary_href' },
+      { api: 'secondaryCta', column: 'secondary_cta' },
+      { api: 'secondaryHref', column: 'secondary_href' },
+      { api: 'status', column: 'status' },
+    ],
+  },
+  heroImages: {
+    table: 'hero_images',
+    orderBy: 'sort_order ASC, id ASC',
+    fields: [
+      { api: 'imageUrl', column: 'image_url' },
+      { api: 'altText', column: 'alt_text' },
+      { api: 'sortOrder', column: 'sort_order' },
+      { api: 'status', column: 'status' },
+    ],
+  },
+  navLinks: {
+    table: 'nav_links',
+    orderBy: 'sort_order ASC, id ASC',
+    fields: [
+      { api: 'label', column: 'label' },
+      { api: 'href', column: 'href' },
+      { api: 'placement', column: 'placement' },
+      { api: 'sortOrder', column: 'sort_order' },
+      { api: 'status', column: 'status' },
+    ],
+  },
+  stats: {
+    table: 'stats',
+    orderBy: 'sort_order ASC, id ASC',
+    fields: [
+      { api: 'name', column: 'name' },
+      { api: 'value', column: 'value' },
+      { api: 'sortOrder', column: 'sort_order' },
+      { api: 'status', column: 'status' },
+    ],
+  },
+  sliderModules: {
+    table: 'slider_modules',
+    orderBy: 'sort_order ASC, id ASC',
+    fields: [
+      { api: 'label', column: 'label' },
+      { api: 'title', column: 'title' },
+      { api: 'description', column: 'description' },
+      { api: 'stat', column: 'stat' },
+      { api: 'statLabel', column: 'stat_label' },
+      { api: 'imageUrl', column: 'image_url' },
+      { api: 'sortOrder', column: 'sort_order' },
+      { api: 'status', column: 'status' },
+    ],
+  },
+  features: {
+    table: 'features',
+    orderBy: 'sort_order ASC, id ASC',
+    fields: [
+      { api: 'title', column: 'title' },
+      { api: 'description', column: 'description' },
+      { api: 'value', column: 'value' },
+      { api: 'sortOrder', column: 'sort_order' },
+      { api: 'status', column: 'status' },
+    ],
+  },
+  demoSection: {
+    table: 'demo_section',
+    orderBy: 'id ASC',
+    fields: [
+      { api: 'kicker', column: 'kicker' },
+      { api: 'title', column: 'title' },
+      { api: 'description', column: 'description' },
+      { api: 'submitLabel', column: 'submit_label' },
+      { api: 'successMessage', column: 'success_message' },
+    ],
+  },
+  footer: {
+    table: 'footer_section',
+    orderBy: 'id ASC',
+    fields: [
+      { api: 'ctaKicker', column: 'cta_kicker' },
+      { api: 'ctaTitle', column: 'cta_title' },
+      { api: 'ctaButton', column: 'cta_button' },
+      { api: 'ctaHref', column: 'cta_href' },
+      { api: 'description', column: 'description' },
+      { api: 'copyright', column: 'copyright' },
+    ],
+  },
+  contactItems: {
+    table: 'contact_items',
+    orderBy: 'sort_order ASC, id ASC',
+    fields: [
+      { api: 'label', column: 'label' },
+      { api: 'value', column: 'value' },
+      { api: 'helper', column: 'helper' },
+      { api: 'sortOrder', column: 'sort_order' },
+      { api: 'status', column: 'status' },
+    ],
+  },
+  media: {
+    table: 'media_assets',
+    orderBy: 'id DESC',
+    fields: [
+      { api: 'name', column: 'name' },
+      { api: 'fileUrl', column: 'file_url' },
+      { api: 'type', column: 'type' },
+      { api: 'usedIn', column: 'used_in' },
+      { api: 'altText', column: 'alt_text' },
+      { api: 'status', column: 'status' },
+    ],
+  },
+}
+
+module.exports = configs

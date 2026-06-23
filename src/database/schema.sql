@@ -1,0 +1,128 @@
+CREATE TABLE IF NOT EXISTS admins (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  role VARCHAR(50) NOT NULL DEFAULT 'admin',
+  status VARCHAR(20) NOT NULL DEFAULT 'active',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS site_settings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  site_title VARCHAR(255) NOT NULL,
+  meta_description TEXT,
+  favicon VARCHAR(255),
+  logo_light VARCHAR(255),
+  logo_dark VARCHAR(255),
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS hero_section (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  kicker VARCHAR(255),
+  title TEXT,
+  description TEXT,
+  primary_cta VARCHAR(150),
+  primary_href VARCHAR(255),
+  secondary_cta VARCHAR(150),
+  secondary_href VARCHAR(255),
+  status VARCHAR(20) NOT NULL DEFAULT 'active'
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS hero_images (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  image_url VARCHAR(255) NOT NULL,
+  alt_text VARCHAR(255),
+  sort_order INT NOT NULL DEFAULT 0,
+  status VARCHAR(20) NOT NULL DEFAULT 'active'
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS nav_links (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  label VARCHAR(120) NOT NULL,
+  href VARCHAR(255) NOT NULL,
+  placement VARCHAR(120),
+  sort_order INT NOT NULL DEFAULT 0,
+  status VARCHAR(20) NOT NULL DEFAULT 'active'
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS stats (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  value VARCHAR(120) NOT NULL,
+  sort_order INT NOT NULL DEFAULT 0,
+  status VARCHAR(20) NOT NULL DEFAULT 'active'
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS slider_modules (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  label VARCHAR(120) NOT NULL,
+  title TEXT,
+  description TEXT,
+  stat VARCHAR(120),
+  stat_label VARCHAR(120),
+  image_url VARCHAR(255),
+  sort_order INT NOT NULL DEFAULT 0,
+  status VARCHAR(20) NOT NULL DEFAULT 'active'
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS features (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  value VARCHAR(50),
+  sort_order INT NOT NULL DEFAULT 0,
+  status VARCHAR(20) NOT NULL DEFAULT 'active'
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS demo_section (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  kicker VARCHAR(255),
+  title VARCHAR(255),
+  description TEXT,
+  submit_label VARCHAR(150),
+  success_message TEXT
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS demo_requests (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  phone VARCHAR(80) NOT NULL,
+  email VARCHAR(190) NOT NULL,
+  madarsa VARCHAR(190) NOT NULL,
+  status VARCHAR(20) NOT NULL DEFAULT 'new',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS footer_section (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  cta_kicker VARCHAR(255),
+  cta_title TEXT,
+  cta_button VARCHAR(150),
+  cta_href VARCHAR(255),
+  description TEXT,
+  copyright VARCHAR(255)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS contact_items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  label VARCHAR(120) NOT NULL,
+  value TEXT,
+  helper TEXT,
+  sort_order INT NOT NULL DEFAULT 0,
+  status VARCHAR(20) NOT NULL DEFAULT 'active'
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS media_assets (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(190) NOT NULL,
+  file_url VARCHAR(255) NOT NULL,
+  type VARCHAR(80),
+  used_in VARCHAR(190),
+  alt_text VARCHAR(255),
+  status VARCHAR(20) NOT NULL DEFAULT 'active',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
