@@ -4,6 +4,22 @@ START TRANSACTION;
 
 USE `madarsa_landing_backend`;
 
+CREATE TABLE IF NOT EXISTS `feature_section` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `kicker` VARCHAR(255),
+  `title` TEXT,
+  `description` TEXT,
+  `card_link_label` VARCHAR(150)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `demo_benefits` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `label` VARCHAR(150) NOT NULL,
+  `icon` VARCHAR(80) NOT NULL DEFAULT 'support',
+  `sort_order` INT NOT NULL DEFAULT 0,
+  `status` VARCHAR(20) NOT NULL DEFAULT 'active'
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 INSERT INTO `site_settings` (`id`, `site_title`, `meta_description`, `favicon`, `logo_light`, `logo_dark`) VALUES
 (1, 'مدرسہ سافٹ ویئر', 'جدید مدرسہ مینجمنٹ کے لئے مکمل سافٹ ویئر حل۔', '/favicon.svg', '/assets/new1.png', '/assets/new2.png')
 ON DUPLICATE KEY UPDATE
@@ -77,6 +93,14 @@ ON DUPLICATE KEY UPDATE
   `sort_order` = VALUES(`sort_order`),
   `status` = VALUES(`status`);
 
+INSERT INTO `feature_section` (`id`, `kicker`, `title`, `description`, `card_link_label`) VALUES
+(1, 'اہم خصوصیات', 'مدرسہ کے ہر شعبے کے لیے مکمل حل۔', 'یہ سافٹ ویئر روزمرہ کے انتظامی کاموں کو کم وقت میں مکمل کرنے کے لیے بنایا گیا ہے، تاکہ ٹیم ریکارڈ، رپورٹس اور فالو اپ آسانی سے manage کر سکے۔', 'مزید جانیں')
+ON DUPLICATE KEY UPDATE
+  `kicker` = VALUES(`kicker`),
+  `title` = VALUES(`title`),
+  `description` = VALUES(`description`),
+  `card_link_label` = VALUES(`card_link_label`);
+
 INSERT INTO `demo_section` (`id`, `kicker`, `title`, `description`, `submit_label`, `success_message`) VALUES
 (1, 'ڈیمو درخواست', 'ڈیمو اکاؤنٹ حاصل کریں۔', 'اپنی بنیادی معلومات بھیجیں، ہماری ٹیم آپ کو ڈیمو لاگ اِن اور پاس ورڈ دے کر سسٹم کا مکمل جائزہ فراہم کرے گی۔', 'درخواست بھیجیں', 'آپ کی درخواست محفوظ ہو گئی ہے۔ ہماری ٹیم جلد رابطہ کرے گی۔')
 ON DUPLICATE KEY UPDATE
@@ -85,6 +109,16 @@ ON DUPLICATE KEY UPDATE
   `description` = VALUES(`description`),
   `submit_label` = VALUES(`submit_label`),
   `success_message` = VALUES(`success_message`);
+
+INSERT INTO `demo_benefits` (`id`, `label`, `icon`, `sort_order`, `status`) VALUES
+(1, 'مفت ڈیمو', 'download', 1, 'active'),
+(2, 'ہر وقت بیک اپ', 'backup', 2, 'active'),
+(3, 'آسان سپورٹ', 'support', 3, 'active')
+ON DUPLICATE KEY UPDATE
+  `label` = VALUES(`label`),
+  `icon` = VALUES(`icon`),
+  `sort_order` = VALUES(`sort_order`),
+  `status` = VALUES(`status`);
 
 INSERT INTO `footer_section` (`id`, `cta_kicker`, `cta_title`, `cta_button`, `cta_href`, `description`, `copyright`) VALUES
 (1, 'مدرسہ مینجمنٹ کو آج ہی آسان بنائیں', 'مکمل ڈیمو دیکھیں اور اپنی ٹیم کے لئے بہترین فلو منتخب کریں۔', 'ڈیمو درخواست دیں', '/contact', 'جدید مدرسہ مینجمنٹ کے لئے مکمل سافٹ ویئر حل۔', 'کاپی رائٹ 2026 مدرسہ سافٹ ویئر۔ تمام حقوق محفوظ ہیں۔')

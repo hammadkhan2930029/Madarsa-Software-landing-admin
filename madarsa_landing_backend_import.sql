@@ -85,6 +85,14 @@ CREATE TABLE IF NOT EXISTS `features` (
   `status` VARCHAR(20) NOT NULL DEFAULT 'active'
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `feature_section` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `kicker` VARCHAR(255),
+  `title` TEXT,
+  `description` TEXT,
+  `card_link_label` VARCHAR(150)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS `demo_section` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `kicker` VARCHAR(255),
@@ -92,6 +100,14 @@ CREATE TABLE IF NOT EXISTS `demo_section` (
   `description` TEXT,
   `submit_label` VARCHAR(150),
   `success_message` TEXT
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `demo_benefits` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `label` VARCHAR(150) NOT NULL,
+  `icon` VARCHAR(80) NOT NULL DEFAULT 'support',
+  `sort_order` INT NOT NULL DEFAULT 0,
+  `status` VARCHAR(20) NOT NULL DEFAULT 'active'
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `demo_requests` (
@@ -182,8 +198,16 @@ INSERT INTO `features` (`id`, `title`, `description`, `value`, `sort_order`, `st
 (5, 'Exams and Results', 'Exam schedules, grades, results and reports in a clean workflow.', '05', 5, 'active'),
 (6, 'Role Based Access', 'Simple and secure access for admin, branch, teacher and staff users.', '06', 6, 'active');
 
+INSERT INTO `feature_section` (`id`, `kicker`, `title`, `description`, `card_link_label`) VALUES
+(1, 'Key Features', 'A complete solution for every madarsa department.', 'This software helps complete daily administrative work faster, so your team can manage records, reports and follow-ups with ease.', 'Learn More');
+
 INSERT INTO `demo_section` (`id`, `kicker`, `title`, `description`, `submit_label`, `success_message`) VALUES
 (1, 'Demo Request', 'Get a demo account.', 'Send your basic information and our team will share demo login details with you.', 'Send Request', 'Your request has been saved. Our team will contact you soon.');
+
+INSERT INTO `demo_benefits` (`id`, `label`, `icon`, `sort_order`, `status`) VALUES
+(1, 'Free Demo', 'download', 1, 'active'),
+(2, 'Always Backup', 'backup', 2, 'active'),
+(3, 'Easy Support', 'support', 3, 'active');
 
 INSERT INTO `footer_section` (`id`, `cta_kicker`, `cta_title`, `cta_button`, `cta_href`, `description`, `copyright`) VALUES
 (1, 'Make madarsa management easier today', 'Book a complete demo and choose the best workflow for your team.', 'Request Demo', '/contact', 'Complete software solution for modern madarsa management.', 'Copyright 2026 Madarsa Software. All rights reserved.');

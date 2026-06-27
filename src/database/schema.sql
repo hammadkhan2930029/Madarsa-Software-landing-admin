@@ -78,6 +78,14 @@ CREATE TABLE IF NOT EXISTS features (
   status VARCHAR(20) NOT NULL DEFAULT 'active'
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS feature_section (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  kicker VARCHAR(255),
+  title TEXT,
+  description TEXT,
+  card_link_label VARCHAR(150)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS demo_section (
   id INT AUTO_INCREMENT PRIMARY KEY,
   kicker VARCHAR(255),
@@ -85,6 +93,14 @@ CREATE TABLE IF NOT EXISTS demo_section (
   description TEXT,
   submit_label VARCHAR(150),
   success_message TEXT
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS demo_benefits (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  label VARCHAR(150) NOT NULL,
+  icon VARCHAR(80) NOT NULL DEFAULT 'support',
+  sort_order INT NOT NULL DEFAULT 0,
+  status VARCHAR(20) NOT NULL DEFAULT 'active'
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS demo_requests (

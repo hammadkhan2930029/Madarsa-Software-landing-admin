@@ -22,6 +22,7 @@
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.2.0",
     "mysql2": "^3.22.5",
+    "nodemailer": "^7.0.11",
     "zod": "^4.4.3"
   },
   "devDependencies": {

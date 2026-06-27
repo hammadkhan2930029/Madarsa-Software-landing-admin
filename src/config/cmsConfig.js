@@ -80,6 +80,16 @@ const configs = {
       { api: 'status', column: 'status' },
     ],
   },
+  featureSection: {
+    table: 'feature_section',
+    orderBy: 'id ASC',
+    fields: [
+      { api: 'kicker', column: 'kicker' },
+      { api: 'title', column: 'title' },
+      { api: 'description', column: 'description' },
+      { api: 'cardLinkLabel', column: 'card_link_label' },
+    ],
+  },
   demoSection: {
     table: 'demo_section',
     orderBy: 'id ASC',
@@ -89,6 +99,16 @@ const configs = {
       { api: 'description', column: 'description' },
       { api: 'submitLabel', column: 'submit_label' },
       { api: 'successMessage', column: 'success_message' },
+    ],
+  },
+  demoBenefits: {
+    table: 'demo_benefits',
+    orderBy: 'sort_order ASC, id ASC',
+    fields: [
+      { api: 'label', column: 'label' },
+      { api: 'icon', column: 'icon' },
+      { api: 'sortOrder', column: 'sort_order' },
+      { api: 'status', column: 'status' },
     ],
   },
   footer: {

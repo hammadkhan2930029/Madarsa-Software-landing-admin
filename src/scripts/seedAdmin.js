@@ -98,6 +98,13 @@ async function run() {
     { title: 'رول بیسڈ ورک فلو', description: 'ایڈمن، برانچ، استاد اور اسٹاف کے لیے ذمہ داری کے مطابق سادہ اور محفوظ access flow۔', value: '06', sort_order: 6, status: 'active' },
   ])
 
+  await upsertSingleton('feature_section', {
+    kicker: 'اہم خصوصیات',
+    title: 'مدرسہ کے ہر شعبے کے لیے مکمل حل۔',
+    description: 'یہ سافٹ ویئر روزمرہ کے انتظامی کاموں کو کم وقت میں مکمل کرنے کے لیے بنایا گیا ہے، تاکہ ٹیم ریکارڈ، رپورٹس اور فالو اپ آسانی سے manage کر سکے۔',
+    card_link_label: 'مزید جانیں',
+  })
+
   await upsertSingleton('demo_section', {
     kicker: 'ڈیمو درخواست',
     title: 'ڈیمو اکاؤنٹ حاصل کریں۔',
@@ -105,6 +112,12 @@ async function run() {
     submit_label: 'درخواست بھیجیں',
     success_message: 'آپ کی درخواست محفوظ ہو گئی ہے۔ ہماری ٹیم جلد رابطہ کرے گی۔',
   })
+
+  await seedCollection('demo_benefits', [
+    { label: 'مفت ڈیمو', icon: 'download', sort_order: 1, status: 'active' },
+    { label: 'ہر وقت بیک اپ', icon: 'backup', sort_order: 2, status: 'active' },
+    { label: 'آسان سپورٹ', icon: 'support', sort_order: 3, status: 'active' },
+  ])
 
   await upsertSingleton('footer_section', {
     cta_kicker: 'مدرسہ مینجمنٹ کو آج ہی آسان بنائیں',

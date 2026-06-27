@@ -1,6 +1,7 @@
 const { query } = require('../config/db')
 const asyncHandler = require('../utils/asyncHandler')
 const services = require('../services/cmsServices')
+const { sendDemoRequestEmail } = require('../services/mailService')
 
 const getLanding = asyncHandler(async (req, res) => {
   const [
@@ -11,7 +12,9 @@ const getLanding = asyncHandler(async (req, res) => {
     stats,
     sliderModules,
     features,
+    featureSection,
     demoSection,
+    demoBenefits,
     footer,
     contactItems,
   ] = await Promise.all([
@@ -22,7 +25,9 @@ const getLanding = asyncHandler(async (req, res) => {
     services.stats.list({ activeOnly: true }),
     services.sliderModules.list({ activeOnly: true }),
     services.features.list({ activeOnly: true }),
+    services.featureSection.list(),
     services.demoSection.list(),
+    services.demoBenefits.list({ activeOnly: true }),
     services.footer.list(),
     services.contactItems.list({ activeOnly: true }),
   ])
@@ -35,7 +40,9 @@ const getLanding = asyncHandler(async (req, res) => {
     stats,
     sliderModules,
     features,
+    featureSection: featureSection[0] || null,
     demoSection: demoSection[0] || null,
+    demoBenefits,
     footer: footer[0] || null,
     contactItems,
   })
@@ -52,6 +59,11 @@ const createDemoRequest = asyncHandler(async (req, res) => {
     'INSERT INTO demo_requests (name, phone, email, madarsa, status) VALUES (?, ?, ?, ?, ?)',
     [name, phone, email, madarsa, 'new'],
   )
+
+  sendDemoRequestEmail({ name, phone, email, madarsa }).catch((error) => {
+    console.error('Demo request email failed:', error.message)
+  })
+
   res.status(201).json({ id: result.insertId, message: 'Demo request saved' })
 })
 
