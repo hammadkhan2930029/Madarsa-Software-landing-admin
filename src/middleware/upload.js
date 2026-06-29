@@ -3,8 +3,8 @@ const path = require('path')
 const multer = require('multer')
 const httpError = require('../utils/httpError')
 
-const uploadDir = process.env.UPLOAD_DIR || 'uploads'
-fs.mkdirSync(path.resolve(uploadDir), { recursive: true })
+const uploadDir = path.resolve(process.env.UPLOAD_DIR || 'uploads')
+fs.mkdirSync(uploadDir, { recursive: true })
 
 const allowedMimeTypes = new Set([
   'image/jpeg',
@@ -12,6 +12,9 @@ const allowedMimeTypes = new Set([
   'image/webp',
   'image/gif',
   'image/svg+xml',
+  'image/avif',
+  'image/x-icon',
+  'image/vnd.microsoft.icon',
 ])
 
 const storage = multer.diskStorage({

@@ -3,6 +3,8 @@ const path = require('path')
 const asyncHandler = require('../utils/asyncHandler')
 const services = require('../services/cmsServices')
 
+const uploadDir = path.resolve(process.env.UPLOAD_DIR || 'uploads')
+
 const list = asyncHandler(async (req, res) => {
   res.json(await services.media.list())
 })
@@ -23,11 +25,7 @@ const upload = asyncHandler(async (req, res) => {
     status: req.body.status || 'active',
   })
 
-  res.status(201).json({
-    id: record.id,
-    name: record.name,
-    fileUrl: record.fileUrl,
-  })
+  res.status(201).json(record)
 })
 
 const remove = asyncHandler(async (req, res) => {
@@ -35,7 +33,7 @@ const remove = asyncHandler(async (req, res) => {
   await services.media.remove(req.params.id)
 
   if (record.fileUrl?.startsWith('/uploads/')) {
-    const absolutePath = path.resolve(record.fileUrl.slice(1))
+    const absolutePath = path.join(uploadDir, path.basename(record.fileUrl))
     await fs.rm(absolutePath, { force: true })
   }
 
