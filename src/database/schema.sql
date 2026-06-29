@@ -61,12 +61,23 @@ CREATE TABLE IF NOT EXISTS slider_modules (
   id INT AUTO_INCREMENT PRIMARY KEY,
   label VARCHAR(120) NOT NULL,
   title TEXT,
+  card_heading VARCHAR(255),
   description TEXT,
   stat VARCHAR(120),
   stat_label VARCHAR(120),
   image_url VARCHAR(255),
+  alt_text VARCHAR(255),
+  is_default TINYINT(1) NOT NULL DEFAULT 0,
   sort_order INT NOT NULL DEFAULT 0,
   status VARCHAR(20) NOT NULL DEFAULT 'active'
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS slider_section (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  kicker VARCHAR(255),
+  heading_line_one VARCHAR(255),
+  heading_line_two VARCHAR(255),
+  alignment VARCHAR(20) NOT NULL DEFAULT 'right'
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS features (
@@ -119,6 +130,9 @@ CREATE TABLE IF NOT EXISTS footer_section (
   cta_title TEXT,
   cta_button VARCHAR(150),
   cta_href VARCHAR(255),
+  cta_video_url VARCHAR(500),
+  cta_image_url VARCHAR(255),
+  cta_image_alt VARCHAR(255),
   description TEXT,
   copyright VARCHAR(255)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

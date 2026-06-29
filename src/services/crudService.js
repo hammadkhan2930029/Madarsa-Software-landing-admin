@@ -26,11 +26,16 @@ function mapRow(row, fields) {
   }, { id: row.id })
 }
 
+function isTruthyValue(value) {
+  return value === true || value === 1 || value === '1' || value === 'true' || value === 'yes'
+}
+
 function createCrudService(config) {
   const table = config.table
   const fields = config.fields
   const orderBy = config.orderBy || 'id ASC'
   const softDelete = config.softDelete !== false
+  const defaultColumn = config.defaultColumn
 
   return {
     mapRow(row) {
@@ -61,6 +66,9 @@ function createCrudService(config) {
         `INSERT INTO ${table} (${columns.join(', ')}) VALUES (${placeholders})`,
         columns.map((column) => data[column]),
       )
+      if (defaultColumn && isTruthyValue(data[defaultColumn])) {
+        await query(`UPDATE ${table} SET ${defaultColumn} = 0 WHERE id <> ?`, [result.insertId])
+      }
       return this.get(result.insertId)
     },
 
@@ -73,6 +81,9 @@ function createCrudService(config) {
         `UPDATE ${table} SET ${columns.map((column) => `${column} = ?`).join(', ')} WHERE id = ?`,
         [...columns.map((column) => data[column]), id],
       )
+      if (defaultColumn && isTruthyValue(data[defaultColumn])) {
+        await query(`UPDATE ${table} SET ${defaultColumn} = 0 WHERE id <> ?`, [id])
+      }
       return this.get(id)
     },
 
